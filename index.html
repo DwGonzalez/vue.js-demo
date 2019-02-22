@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueMastery Course</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+
+<body>
+
+    <div class="nav-bar"></div>
+
+    <div id="app">
+        <div class="product">
+
+            <div class="product-image">
+                <img v-bind:src="image">
+            </div>
+
+            <div class="product-info">
+                <h1>{{ title }}</h1>
+
+                <p v-if="inStock">In Stock</p>
+
+                <p v-else :class="{ outOfStock: !inStock }">Out of Stock</p>
+
+                <span v-if="onSale">{{ sale }}</span>
+                <br>
+
+                <ul>
+                    <li v-for="detail in details">{{ detail }}</li>
+                </ul>
+                <ul>
+                    <li v-for="size in sizes">{{ size }}</li>
+                </ul>
+
+                <div v-for="(variant, index) in variants" :key="variant.variantId" class="color-box" :style="{ backgroundColor: variant.variantColor }"
+                    @mouseover="updateProduct(index)">
+                </div>
+
+                <button v-on:click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock }">Add to Cart</button>
+                <button @click="removeFromCart">Remove from Cart</button>
+
+                <div class="cart">
+                    <p>Cart ({{ cart }})</p>
+                </div>
+
+                <br>
+
+                <a :href="link" target="_blank">More products</a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
