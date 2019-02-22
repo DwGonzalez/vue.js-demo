@@ -1,2 +1,2 @@
-# vue.js-demo
-Vue.js Course Demo
+# Vue.js Demo
+Vue.js Course Demo following the steps on the VueMastery.com course
